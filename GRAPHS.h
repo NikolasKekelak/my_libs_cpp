@@ -173,11 +173,8 @@ public:
     // pre toky, vstupna matica, je matica susedností, ktorá zároveň má aj random váhu
     void flow_edges(MATRIX<int> A) {
         int numb_of_vertices= vertices.size();
-        bool approved;
         bool change;
-        do{
             do {
-                approved=true;
                 change = false;
                 for (int i = 0; i < numb_of_vertices; i++) {
                     int sum_row = 0;
@@ -211,10 +208,9 @@ public:
                     for (int j = 0; j < numb_of_vertices; j++) {
                         sum += A.matrix[j][i];
                     }
-                    if (sum==0) approved=false;
                 }
             } while (change);
-        }while (0);
+
         for (auto i = 0; i< numb_of_vertices; i++ ) {
             for (auto j=0 ;j < numb_of_vertices; j++) {
                 if (A.matrix[i][j]!=0) {

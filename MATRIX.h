@@ -184,9 +184,9 @@ class MATRIX {
     MATRIX<T> operator* (MATRIX<T> B) {
         MATRIX<T> result(matrix.size(), B.matrix[0].size());
         for (int i = 0; i < matrix.size(); i++)
-            for (int j = 0; j < B.matrix.size(); j++)
-                for (int k = 0; k < B.matrix[0].size(); k++)
-                    result.matrix[i][j] += matrix[i][k]*B.matrix[k][j];
+            for (int j = 0; j < B.matrix[0].size(); j++)
+                for (int k = 0; k < B.matrix.size(); k++)
+                    result.matrix[i][j] += matrix[i][k] * B.matrix[k][j];
         return result;
     }
 };

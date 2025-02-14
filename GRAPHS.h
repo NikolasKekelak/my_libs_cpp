@@ -150,7 +150,7 @@ public:
         float x=0, y=0;
         int count =0;
         MATRIX<float> translation(2,1);
-        translation.matrix ={{edge_length},{0.0}};
+        translation.matrix ={{0.0},{edge_length} };
         MATRIX<float> rotation(2,2);
         rotation.matrix ={
         {cosf(angle), sinf(angle)},
@@ -161,13 +161,11 @@ public:
             v.name = (char)('A' + count);
             v.label = (char)('a' + count++);
             v.parameters = parameters;
-            v.x = x;
-            v.y = y;
+            v.x = translation.matrix[0][0];
+            v.y = translation.matrix[1][0];
             vertices.push_back(v);
-
             translation=rotation*translation;
-            x+=translation.matrix[0][0];
-            y+=translation.matrix[1][0];
+
         }
     }
 
@@ -303,6 +301,20 @@ public:
             }
         }
     }
+    }
+    // kazdy vrchol s kazdym
+    void complete_edges(string parameters) {
+        int size=vertices.size();
+        for (int i=0; i<size; i++) {
+            for (int j=i+1; j<size; j++) {
+                EDGE e;
+                e.label="";
+                e.parameters=parameters;
+                e.end_points[0]=vertices[i].name;
+                e.end_points[1]=vertices[j].name;
+                edges.push_back(e);
+            }
+        }
     }
 };
 
